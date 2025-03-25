@@ -1,0 +1,31 @@
+type Task{
+	taskId:Int!
+	title:String
+	desc: String
+	creator: String
+	startDate: String
+	endDate: String
+	status: String
+}
+
+input TaskInput{
+	title:String
+	desc: String
+	creator: String
+	startDate: String
+	endDate: String
+	status: String
+}
+
+type Query{
+	allTasks:[Task]
+	getTask(taskId:Int):Task
+	getTaskByCreator(creatorName: String): [Task]
+    getTasksByStatus(status: String): [Task]	
+}
+
+type Mutation {
+   addTask(task: TaskInput): Task
+   updateTaskStatus(taskId: Int, status: String): Task
+   deleteTask(taskId: Int): Boolean
+}
