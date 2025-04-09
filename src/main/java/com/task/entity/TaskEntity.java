@@ -12,7 +12,7 @@ import lombok.Data;
 @Entity
 @Table(name="task")
 @Data
-public class Task {
+public class TaskEntity {
 	@Id
 	@Column(name="task_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,9 @@ public class Task {
 
 	private String title;
 	private String desc;
-	private String creator;
+	@ManyToOne
+    private CreatorEntity creator;
+
 	private String startDate;
 	private String endDate;
 	private String status;

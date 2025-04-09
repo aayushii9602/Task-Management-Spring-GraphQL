@@ -2,30 +2,44 @@ type Task{
 	taskId:Int!
 	title:String
 	desc: String
-	creator: String
+	creator: Creator
 	startDate: String
 	endDate: String
 	status: String
+}
+
+type Creator {
+  name: String
+  email: String
+  tasks: [Task]
 }
 
 input TaskInput{
 	title:String
 	desc: String
-	creator: String
+	creator: CreatorInput
 	startDate: String
 	endDate: String
 	status: String
 }
 
+input CreatorInput {
+    name: String
+    email: String
+}
+
 type Query{
 	allTasks:[Task]
 	getTask(taskId:Int):Task
-	getTaskByCreator(creatorName: String): [Task]
+	getTaskByCreator(creatorEmailId: String): [Task]
     getTasksByStatus(status: String): [Task]	
 }
 
 type Mutation {
    addTask(task: TaskInput): Task
-   updateTaskStatus(taskId: Int, status: String): Task
+   updateTaskStatus(taskId: Int, status: String): String!
    deleteTask(taskId: Int): Boolean
+   sendEmailToCreator(creatorEmailId: String!): String
+   addCreator(creator: CreatorInput): Creator
+   sendMail(to: String!, subject: String!, text:String!) : String!
 }

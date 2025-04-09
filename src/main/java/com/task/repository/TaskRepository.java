@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.task.entity.Task;
+import com.task.entity.TaskEntity;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Integer> {
-	 Optional<Task> findById(int taskId);
+public interface TaskRepository extends JpaRepository<TaskEntity, Integer> {
+	 Optional<TaskEntity> findById(int taskId);
 	 
-	 List<Task> findByCreator(String creatorName);
+	 List<TaskEntity> findByCreatorEmail(String email);
 	 
-	 List<Task> findByStatus(String status);
+	 List<TaskEntity> findByStatus(String status);
 }

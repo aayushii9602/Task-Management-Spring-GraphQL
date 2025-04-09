@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.task.entity.Task;
+import com.task.entity.TaskEntity;
 import com.task.repository.TaskRepository;
 
 @Service
@@ -13,23 +13,23 @@ public class TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 	
-	public Task createAndUpdateTask(Task task) {
+	public TaskEntity createAndUpdateTask(TaskEntity task) {
 		return this.taskRepository.save(task);
 	}
 	
-	public Task findTaskById(int taskId) {
+	public TaskEntity findTaskById(int taskId) {
 		return this.taskRepository.findById(taskId).orElseThrow();
 	}
 	
-	public List<Task> findAllTask(){
+	public List<TaskEntity> findAllTask(){
 		return this.taskRepository.findAll();
 	}
 	
-	public List<Task> findByCreator(String creatorName){
-		return this.taskRepository.findByCreator(creatorName);
+	public List<TaskEntity> findByCreator(String creatorEmailId){
+		return this.taskRepository.findByCreatorEmail(creatorEmailId);
 	}
 	
-	public List<Task> findByStatus(String status){
+	public List<TaskEntity> findByStatus(String status){
 		return this.taskRepository.findByStatus(status);
 	}
 	
